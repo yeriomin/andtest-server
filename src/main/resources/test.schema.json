@@ -1,0 +1,101 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "definitions": {
+    "questionMultipleChoice": {
+      "additionalProperties": false,
+      "properties": {
+        "question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "choices": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "additionalItems": false,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "correct": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "additionalItems": false,
+          "items": {
+            "type": "integer"
+          }
+        },
+        "type": {
+          "type": "string"
+        },
+        "explanation": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "question",
+        "choices",
+        "correct",
+        "type",
+        "explanation"
+      ]
+    },
+    "questionOpenEnded": {
+      "additionalProperties": false,
+      "properties": {
+        "question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "correct": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "explanation": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "question",
+        "correct",
+        "type",
+        "explanation"
+      ]
+    }
+  },
+  "properties": {
+    "description": {
+      "type": "string"
+    },
+    "timeLimit": {
+      "type": "integer"
+    },
+    "questions": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "additionalItems": true,
+      "items": {
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/definitions/questionMultipleChoice"
+          },
+          {
+            "$ref": "#/definitions/questionOpenEnded"
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "questions"
+  ]
+}

@@ -1,0 +1,13 @@
+*.class
+target/
+bin/
+.idea/
+.project
+.classpath
+.settings/
+*.iml
+
+# Package Files #
+*.jar
+hs_err_pid*
+*.log*
